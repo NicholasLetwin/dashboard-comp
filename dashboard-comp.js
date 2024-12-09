@@ -18,29 +18,30 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
     return "dashboard-comp";
   }
 
-  constructor() {
-    super();
-    this.title = "";
-    this.t = this.t || {};
-    this.t = {
-      ...this.t,
-      title: "Title",
-    };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/dashboard-comp.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
-  }
+  
+constructor() {
+  super();
+  this.useCaseData = [];
+  this.activeUseCase = null;
+  this.filters = [];
+}
 
-  // Lit reactive properties
   static get properties() {
     return {
-      ...super.properties,
-      title: { type: String },
+      useCaseData: { type: Array },
+      activeUseCase: { type: Object },
+      filters: { type: Array }
     };
+  }
+
+  dataCallback() {
+    super.dataCallback();
+    fetch('./lib/use-case.json')
+      .then(response => response.json())
+      .then(data => {
+        this.useCaseData = data.data;
+        this.filters = [...new Set(data.data.flatMap(item => item.tags))];
+      });
   }
 
   // Lit scoped styles
