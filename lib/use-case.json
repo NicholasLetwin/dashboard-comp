@@ -1,0 +1,13 @@
+
+{
+    "status": 200,
+    "data": [
+      {
+        "name": "Blog Template",
+        "description": "Use case for creating blogs",
+        "tags": ["Blog", "Content Creation"],
+        "demoLink": "https://hax.cloud?use-case=blog-template",
+        "dateAdded": 1700785860
+      }
+    ]
+  }

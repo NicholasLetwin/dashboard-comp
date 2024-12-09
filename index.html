@@ -46,7 +46,6 @@
   <script type="module" src="./dashboard-comp.js"></script>
 
   <div class="card" ?selected="${this.activeUseCase?.name === item.name}">
-    <img src="${item.imageUrl}" alt="${item.name}">
     <h3>${item.name}</h3>
     <p>${item.description}</p>
     <button @click="${() => this.selectUseCase(item)}">
