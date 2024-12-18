@@ -3,11 +3,31 @@
     "status": 200,
     "data": [
       {
-        "name": "Blog Template",
+        "name": "Blog",
         "description": "Use case for creating blogs",
         "tags": ["Blog", "Content Creation"],
+        "category": "blog",
         "demoLink": "https://hax.cloud?use-case=blog-template",
-        "dateAdded": 1700785860
+        "dateAdded": 1700785860,
+        "image": "https://via.placeholder.com/300x150"
+      },
+      {
+        "name": "Portfolio",
+        "description": "Use case for creating portfolios",
+        "tags": ["Portfolio", "Personal"],
+        "category": "blog",
+        "demoLink": "https://hax.cloud?use-case=portfolio",
+        "dateAdded": 1700786000,
+        "image": "https://via.placeholder.com/300x150"
+      },
+      {
+        "name": "Course",
+        "description": "Use case for creating courses",
+        "tags": ["Course", "Educational"],
+        "category": "course",
+        "demoLink": "https://hax.cloud?use-case=portfolio",
+        "dateAdded": 1700786000,
+        "image": "https://via.placeholder.com/300x150"
       }
     ]
   }
