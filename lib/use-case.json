@@ -28,6 +28,60 @@
         "demoLink": "https://hax.cloud?use-case=portfolio",
         "dateAdded": 1700786000,
         "image": "https://via.placeholder.com/300x150"
+      },
+      {
+        "name": "Website",
+        "description": "Use case for creating websites",
+        "tags": ["Website", "Business", "Personal"],
+        "category": "website",
+        "demoLink": "https://hax.cloud/?website",
+        "dateAdded": 1700786000,
+        "image": "https://via.placeholder.com/300x150"
+      },
+      {
+        "name": "Collection",
+        "description": "Use case for creating collections",
+        "tags": ["Collection", "Business", "Personal"],
+        "category": "collection",
+        "demoLink": "https://hax.cloud/?collection",
+        "dateAdded": 1700786000,
+        "image": "https://via.placeholder.com/300x150"
+      },
+      {
+        "name": "Training",
+        "description": "Use case for creating trainings",
+        "tags": ["Training", "Educational", "Business"],
+        "category": "training",
+        "demoLink": "https://hax.cloud/?training",
+        "dateAdded": 1700786000,
+        "image": "https://via.placeholder.com/300x150"
+      },
+      {
+        "name": "E-commerce Store",
+        "description": "Use case for creating online stores",
+        "tags": ["E-commerce", "Business", "Retail"],
+        "category": "store",
+        "demoLink": "https://hax.cloud/?ecommerce",
+        "dateAdded": 1700786200,
+        "image": "https://via.placeholder.com/300x150"
+      },
+      {
+        "name": "Resume",
+        "description": "Use case for creating professional resumes",
+        "tags": ["Resume", "Professional", "Personal"],
+        "category": "resume",
+        "demoLink": "https://hax.cloud/?resume",
+        "dateAdded": 1700786300,
+        "image": "https://via.placeholder.com/300x150"
+      },
+      {
+        "name": "Photo Gallery",
+        "description": "Use case for creating online photo galleries",
+        "tags": ["Photo Gallery", "Creative", "Personal"],
+        "category": "gallery",
+        "demoLink": "https://hax.cloud/?photo-gallery",
+        "dateAdded": 1700786900,
+        "image": "https://via.placeholder.com/300x150"
       }
     ]
   }

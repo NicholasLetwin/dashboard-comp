@@ -144,6 +144,30 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
         color: var(--ddd-theme-primary, #003366);
       }
 
+      .sidebar .search-bar {
+        display: flex;
+        position: relative;
+        align-items: center;
+        width: 100%;
+        margin-bottom: var(--ddd-spacing-4, 15px);
+      }
+
+      .sidebar .search-bar input {
+        width: 100%;
+        padding: var(--ddd-spacing-3, 10px);
+        padding-left: 35px; 
+        border: var(--ddd-border-xs, 1px solid #ccc);
+        border-radius: var(--ddd-radius-sm, 4px);
+        font-size: var(--ddd-font-size-m, 1rem);
+        color: var(--ddd-theme-default-text, #333);
+        background-color: var(--ddd-theme-default-white, #f9f9f9);
+      }
+
+      .sidebar .search-bar input::placeholder {
+        color: var(--ddd-theme-default-muted, #aaa);
+        font-style: italic;
+      }
+
       .sidebar label {
         display: flex;
         align-items: center;
@@ -181,23 +205,30 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
         gap: var(--ddd-spacing-5, 20px);
       }
 
-      .actions {
+      .continue-wrapper {
+        padding: var(--ddd-spacing-4, 15px);
         display: flex;
-        justify-content: space-between;
-        margin-top: var(--ddd-spacing-5, 20px);
+        justify-content: flex-end;
       }
 
-      button {
-        padding: var(--ddd-spacing-3, 10px) var(--ddd-spacing-4, 15px);
+      .continue-button {
+        padding: var(--ddd-spacing-2, 10px) var(--ddd-spacing-4, 15px);
+        font-size: var(--ddd-font-size-m, 1rem);
         border: none;
         border-radius: var(--ddd-radius-sm, 4px);
         background-color: var(--ddd-theme-primary, #003366);
         color: var(--ddd-theme-default-white, white);
         cursor: pointer;
+        transition: background-color 0.3s ease;
       }
 
-      button:disabled {
+      .continue-button:disabled {
         background-color: var(--ddd-theme-default-muted, #ccc);
+        cursor: not-allowed;
+      }
+
+      .continue-button:hover:enabled {
+        background-color: var(--ddd-theme-primary-hover, #005599);
       }
     `;
   }
@@ -213,28 +244,33 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
       <div class="main-container">
         <div class="sidebar">
           <h3>Filters</h3>
-          ${[...new Set(this.useCaseData.flatMap((item) => item.tags))].map(
-            (tag) => html`
-              <label>
-                <input
-                  type="checkbox"
-                  @change="${() => this.toggleFilter(tag)}"
-                  ?checked="${this.activeFilters.includes(tag)}"
-                />
-                ${tag}
-              </label>
-            `
-          )}
-          <button @click="${this.resetFilters}">Reset Filters</button>
+          <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              @input="${this.handleSearch}"
+              placeholder="Search tags..."
+            />
+          </div>
+          ${[...new Set(this.useCaseData.flatMap((item) => item.tags))]
+            .filter((tag) => tag.toLowerCase().includes(this.activeSearch))
+            .map(
+              (tag) => html`
+                <label>
+                  <input
+                    type="checkbox"
+                    @change="${() => this.toggleFilter(tag)}"
+                    ?checked="${this.activeFilters.includes(tag)}"
+                  />
+                  ${tag}
+                </label>
+              `
+            )}
+          <button @click="${this.resetFilter}">Reset Filters</button>
         </div>
-
+  
         <div class="content-wrapper">
-          <input
-            type="text"
-            class="search-bar"
-            @input="${this.handleSearch}"
-            placeholder="Search for use cases..."
-          />
+          <div class="result-info">${this.filteredData.length} results</div>
           <div class="cards">
             ${this.filteredData.map(
               (item) => html`
@@ -249,17 +285,23 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
             )}
           </div>
         </div>
-      </div>
-      <div class="actions">
-        <button @click="${this.continue}" ?disabled="${!this.activeUseCase}">
-          Continue
-        </button>
+  
+        <div class="actions">
+          <button @click="${this.continue}" ?disabled="${!this.activeUseCase}">
+            Continue
+          </button>
+        </div>
       </div>
     `;
   }
-
-
   
+  
+  handleSearch(event) {
+    this.activeSearch = event.target.value.toLowerCase();
+    this.updateFilteredData();
+  }
+  
+
 
 
 
