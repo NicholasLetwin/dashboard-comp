@@ -34,24 +34,13 @@
 
 <body>
   <div id="demo">
-    <h1>dashboard-comp</h1>
+    <h1>Hax Dashboard Comp</h1>
     <!-- this is going to do whatever the tag's defaults are -->
-    <h2>Default</h2>
     <dashboard-comp></dashboard-comp>
     
   </div>
   <script type="module" src="./dashboard-comp.js"></script>
 
-
-  <div class="filter">
-    ${this.filters.map(
-      filter => html`<button @click="${() => this.filterByTag(filter)}">${filter}</button>`
-    )}
-  </div>
-
-  <button @click="${this.continue}" ?disabled="${!this.activeUseCase}">
-    Continue
-  </button>
   
 </body>
 </html>

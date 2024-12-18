@@ -43,12 +43,12 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
 
 
   firstUpdated() {
-    fetch("./lib/use-case.json")
-      .then((response) => response.json())
-      .then((data) => {
-        this.useCaseData = data.data;
-        this.filteredData = [...this.useCaseData];
-      });
+    fetch(new URL('./lib/use-case.json', import.meta.url))
+  .then((response) => response.json())
+  .then((data) => {
+    this.useCaseData = data.data;
+    this.filteredData = [...this.useCaseData];
+  });
   }
 
   handleSearch(event) {
@@ -87,6 +87,12 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
   }
 
   resetFilter() {
+    this.activeFilters = [];
+    const checkboxes = this.shadowRoot.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
     this.filteredData = [...this.useCaseData];
     this.requestUpdate();
   }
@@ -237,7 +243,9 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
   }
   
 
-
+  continue() {
+    alert(`Selected Use Case: ${this.activeUseCase}`);
+  }
 
   
   render() {
@@ -277,13 +285,18 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
             )}
           </div>
         </div>
+
+        <div class="continue-wrapper">
+      <button @click="${this.continue}" ?disabled="${!this.activeUseCase}">
+        Continue
+      </button>
+    </div>
+
       </div>
     `;
   }
 
-  continue() {
-    alert(`Selected Use Case: ${this.activeUseCase}`);
-  }
+  
 
 
 
