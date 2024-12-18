@@ -201,8 +201,9 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
 
       .cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--ddd-spacing-5, 20px);
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));      
+        gap: var(--ddd-spacing-2, 8px); 
+        row-gap: var(--ddd-spacing-3, 10px);
       }
 
       .continue-wrapper {
@@ -278,6 +279,7 @@ export class DashboardComp extends DDDSuper(I18NMixin(LitElement)) {
                   .name="${item.name}"
                   .description="${item.description}"
                   .image="${item.image}"
+                  .demoLink="${item.demoLink}"
                   ?isSelected="${this.activeUseCase === item.name}"
                   @card-selected="${() => this.selectUseCase(item.name)}"
                 ></dashboard-card>
